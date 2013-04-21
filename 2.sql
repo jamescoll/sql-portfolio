@@ -1,5 +1,5 @@
 --Number 1
-CONNECT jamescoll/f00tball
+CONNECT jamescoll/password
 --Output: Connected.
 SET SERVEROUTPUT ON
 CREATE OR REPLACE PROCEDURE HelloWorldProc
@@ -20,7 +20,7 @@ PL/SQL procedure successfully completed.
 */
 
 --Number 2
-CONNECT jamescoll/f00tball
+CONNECT jamescoll/password
 --Output: Connected.
 CREATE OR REPLACE PROCEDURE OutputNames (firstname IN VARCHAR2, surname IN VARCHAR2)
 IS
@@ -44,7 +44,7 @@ PL/SQL procedure successfully completed.
 */
 
 --Number 3
-CONNECT jamescoll/f00tball
+CONNECT jamescoll/password
 --Output: Connected
 CREATE OR REPLACE PROCEDURE PrintName(fullname IN VARCHAR)
 IS localvar NUMBER;
