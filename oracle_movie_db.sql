@@ -1,6 +1,6 @@
 ﻿/*TO DO
-CREATE PASSWORD TABLE AND FIND OUT HOW TO HASH PASSWORD VALUE
-POPULATE THE FOLLOWING TABLES WITH DATA
+*ADD DIRECTOR FIELD TO SERIES FIELD - SIMPLIFY THIS IN ERD
+*ADD SERIES FIELD TO EPISODE FIELD - SIMPLIFY THIS ALSO IN ERD
 *MOVIE_COUNTRY IS INCOMPLETE
 *SERIES
 *EPISODE
@@ -728,7 +728,7 @@ INSERT INTO tbl_country(id, iso3, name_en) VALUES (240, 'ZMB', 'Zambia');
 INSERT INTO tbl_country(id, iso3, name_en) VALUES (241, 'ZWE', 'Zimbabwe');
 INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (1, 'Francis', 'Ford', 'Coppola', to_date('04/07/1939', 'MM/DD/YYYY'), '', 227);
 INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (2, 'Bernardo', '', 'Bertolucci', to_date('03/16/1940', 'MM/DD/YYYY'), '', 106);
-INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (3, 'Milo', '', 'Forman', to_date('02/08/1932', 'MM/DD/YYYY'), '', 58);
+INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (3, 'Milos', '', 'Forman', to_date('02/08/1932', 'MM/DD/YYYY'), '', 58);
 INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (4, 'Roman', '', 'Polanski', to_date('08/18/1933', 'MM/DD/YYYY'), '', 74);
 INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (5, 'Stanley', '', 'Kubrick', to_date('07/26/1928', 'MM/DD/YYYY'), to_date('03/07/1999', 'MM/DD/YYYY'), 227);
 INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (6, 'George', '', 'Lucas', to_date('05/14/1944', 'MM/DD/YYYY'), '', 227);
@@ -955,11 +955,14 @@ INSERT INTO tbl_review (id, user_creator, review_title, review_body, creation_da
 
 
 
+
 --actors Edouard Mathe, Musidora and Marcel Levesque
 --genre crime, drama
 --director feuillade ID = 20
 --populate episode/series table
 --what about countries
+
+--put four more series in - Riget (The Kingdom), The Sopranos, 
 
 
 
@@ -1005,7 +1008,44 @@ INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (50, 01);
 INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (51, 01);
 INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (52, 01);
 
+INSERT INTO tbl_series (id, title_en, title_alt, startyear, endyear, plot, episode_length, country, color, silent, rating_rt, rating_imdb) VALUES (02, 'The Kingdom', 'Riget', 1994, 1997, 'The show follows a number of characters, both staff and patients, as they encounter bizarre phenomena, both human and supernatural. The show is notable for its wry humor, its muted sepia colour scheme, and the appearance of a chorus of dishwashers with Down Syndrome who discuss in intimate detail the strange occurrences in the hospital.', 72, 59, 2, 2, 91, 8.5);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (11, 'The Severed Head', 01, 01);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (12, 'The Ring That Kills', 01, 02);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (13, 'The Red Codebook', 01, 03);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (14, 'The Spectre', 01, 04);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (15, 'Dead Mans Escape', 02, 05);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (16, 'Hypnotic Eyes', 02, 06);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (17, 'Satanas', 02, 07);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (18, 'The Thunder Master', 02, 08);
 
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 01); 
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 02);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 03);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 04);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 05);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 06);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 07);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 08);
+
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 01);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 02);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 03);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 04);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 05);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 06);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 07);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 08);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 09);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 10);
+INSERT INTO tbl_seriesgenre (series_id, genre_id) VALUES (01, 9);
+INSERT INTO tbl_seriesgenre (series_id, genre_id) VALUES (01, 22);
+INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (20, 'Louis', '', 'Feuillade', to_date('02/19/1873', 'MM/DD/YYYY'), to_date('02/25/1925', 'MM/DD/YYYY'), 74);
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (50, 'Edouard', '', 'Mathe', to_date('01/07/1886', 'MM/DD/YYYY'), to_date('02/25/1934', 'MM/DD/YYYY'), 14);
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (51, 'Jeanne', 'Musidora', 'Roques', to_date('02/19/1889', 'MM/DD/YYYY'), to_date('02/11/1957', 'MM/DD/YYYY'), 74);
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (52, 'Marcel', '', 'Levesque', to_date('02/19/1877', 'MM/DD/YYYY'), to_date('02/25/1962', 'MM/DD/YYYY'), 74);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (50, 01);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (51, 01);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (52, 01);
 
 
 	
