@@ -969,7 +969,7 @@ INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VAL
 INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (02, 'The Ring That Kills', 01, 02, 20);
 INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (03, 'The Red Codebook', 01, 03, 20);
 INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (04, 'The Spectre', 01, 04, 20);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (05, 'Dead Man's Escape', 01, 05, 20);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (05, 'Dead Mans Escape', 01, 05, 20);
 INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (06, 'Hypnotic Eyes', 01, 06, 20);
 INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (07, 'Satanas', 01, 07, 20);
 INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (08, 'The Thunder Master', 01, 08, 20);
