@@ -1,22 +1,6 @@
 ﻿/*TO DO
-*ADD DIRECTOR FIELD TO SERIES FIELD - SIMPLIFY THIS IN ERD
-*ADD SERIES FIELD TO EPISODE FIELD - SIMPLIFY THIS ALSO IN ERD
-*MOVIE_COUNTRY IS INCOMPLETE
-*SERIES
-*EPISODE
-*SERIES_ACTOR
-*EPISODE_DIRECTOR
-*SERIES_GENRE
-*MOVIE_REVIEW
-*SERIES_REVIEW
-*USERS
-*PASSWORDS
-
-use text type TEXT – up to 64 Kb, 2 bytes overhead for review
-
-set review type as CLOB and see below documentation for how to access a CLOB type
-
-http://stackoverflow.com/questions/3790379/how-to-query-a-clob-column-in-oracle
+Start creating queries - see spec
+-fully checked - insert three more series - brief and you're ready to make queries
 */
 
 CREATE TABLE tbl_user (
@@ -32,22 +16,18 @@ CREATE TABLE tbl_user (
 );
 
 
-
-
 CREATE TABLE tbl_review (
 	id NUMBER(10) NOT NULL,
 	user_creator NUMBER(10) NOT NULL,
 	review_title VARCHAR2(150),
 	review_body CLOB,
-      creation_date DATE NOT NULL,
+      	creation_date DATE NOT NULL,
 	PRIMARY KEY (id)
 );
 
 
-
---I DON'T HAVE TO WORRY ABOUT HASHING THIS... THAT'S FOR PHP TO HANDLE..HAPPY DAYS...JUST RANDOM ALPHAS FOR NOW
 CREATE TABLE tbl_password (
-	password_hash   VARCHAR2(40),
+	password_hash   VARCHAR2(40) NOT NULL,
 	user_id NUMBER(10) NOT NULL,
 	PRIMARY KEY(password_hash, user_id)
 );
@@ -64,17 +44,20 @@ CREATE TABLE tbl_actor (
 	birthcountry NUMBER(10) NOT NULL,
 	PRIMARY KEY (id)
 );
+
 CREATE TABLE tbl_actormovie (
 	actor_id NUMBER(10) NOT NULL,
 	movie_id NUMBER(10) NOT NULL,
 	PRIMARY KEY (movie_id,actor_id)
 );
+
 CREATE TABLE tbl_country (
 	id NUMBER(10) NOT NULL,
 	iso3 CHAR(3),
 	name_en VARCHAR2(64),
 	PRIMARY KEY (id)
 );
+
 CREATE TABLE tbl_director (
 	id NUMBER(10) NOT NULL,
 	fname VARCHAR2(60) NOT NULL,
@@ -85,6 +68,7 @@ CREATE TABLE tbl_director (
 	birthcountry NUMBER(10) NOT NULL,
 	PRIMARY KEY (id)
 );
+
 CREATE TABLE tbl_directormovie (
 	director_id NUMBER(10) NOT NULL,
 	movie_id NUMBER(10) NOT NULL,
@@ -102,22 +86,26 @@ CREATE TABLE tbl_genre (
 	genre_title VARCHAR2(40) NOT NULL,
 	PRIMARY KEY (genre_id)
 );
+
 CREATE TABLE tbl_language (
 	id NUMBER(10) NOT NULL,
 	iso3 VARCHAR2(3) NOT NULL,
 	language_en VARCHAR2(100) NOT NULL,
 	PRIMARY KEY (id)
 );
+
 CREATE TABLE tbl_lucolor (
 	id NUMBER(3) NOT NULL,
 	color_format VARCHAR2(25) NOT NULL,
 	PRIMARY KEY (id)
 );
+
 CREATE TABLE tbl_lusound (
 	id NUMBER(3) NOT NULL,
 	sound_format VARCHAR2(20) NOT NULL,
 	PRIMARY KEY (id)
 );
+
 CREATE TABLE tbl_movie (
 	id NUMBER(10) NOT NULL,
 	title_en VARCHAR2(150) NOT NULL,
@@ -177,11 +165,7 @@ CREATE TABLE tbl_moviecountry (
 	PRIMARY KEY (movie_id,country_id)
 );
 
-CREATE TABLE tbl_seriescountry (
-	series_id NUMBER(10) NOT NULL,
-	country_id NUMBER(10) NOT NULL,
-	PRIMARY KEY (series_id,country_id)
-);
+
 
 CREATE TABLE tbl_moviereview (
 	movie_id NUMBER(10) NOT NULL,
@@ -327,6 +311,9 @@ ALTER TABLE tbl_series
 	ADD FOREIGN KEY (color) 
 	REFERENCES tbl_lucolor (id);
 
+ALTER TABLE tbl_series
+	ADD FOREIGN KEY (country) 
+	REFERENCES tbl_country (id);
 
 
 ALTER TABLE tbl_moviecountry
@@ -337,13 +324,7 @@ ALTER TABLE tbl_moviecountry
 	ADD FOREIGN KEY (movie_id) 
 	REFERENCES tbl_movie (id);
 
-ALTER TABLE tbl_seriescountry
-	ADD FOREIGN KEY (country_id) 
-	REFERENCES tbl_country (id);
 
-ALTER TABLE tbl_seriescountry
-	ADD FOREIGN KEY (series_id) 
-	REFERENCES tbl_series (id);
 
 ALTER TABLE tbl_series
 	ADD FOREIGN KEY (country)
@@ -953,16 +934,19 @@ INSERT INTO tbl_review (id, user_creator, review_title, review_body, creation_da
 
 INSERT INTO tbl_review (id, user_creator, review_title, review_body, creation_date) VALUES (108, 000009 'The Horror of War', 'I cannot fathom the absolute horror that war brings to a persons life, but never has a film depicted it more harrowingly than The Deerhunter. At 182 minutes, it seemed to fly by, leaving me wanting more and wishing this would not end. all facets are explored, all peoples emotions are laid bare, not just the combatants. If we obviously did not know better, one would have to say this was a British film, as it has all the best elements that British movie making displays. i can eulogise for hundreds of lines, but this really is the ONLY American movie i can think of (others? apart from taxi driver) that is RAW. A strange word i know but the movie oozes a raw edge to it. Immense performances from all concerned, and if i had to say, i believe i have not seen Christopher Walken in a better role. One of the very few films i deservedly give 10/10. A must for any collection and a stunning example of every aspect of film making coming together, albeit for a sombre depiction of life.', to_date('04/28/2013', 'MM/DD/YYYY'));
 
+INSERT INTO tbl_moviereview (movie_id, review_id) VALUES (1,100);
+INSERT INTO tbl_moviereview (movie_id, review_id) VALUES (2,101);
+INSERT INTO tbl_moviereview (movie_id, review_id) VALUES (3,102);
+INSERT INTO tbl_moviereview (movie_id, review_id) VALUES (4,103);
+INSERT INTO tbl_moviereview (movie_id, review_id) VALUES (5,104);
+INSERT INTO tbl_moviereview (movie_id, review_id) VALUES (6,105);
+INSERT INTO tbl_moviereview (movie_id, review_id) VALUES (7,106);
+INSERT INTO tbl_moviereview (movie_id, review_id) VALUES (8,107);
+INSERT INTO tbl_moviereview (movie_id, review_id) VALUES (9, 108);
 
 
 
---actors Edouard Mathe, Musidora and Marcel Levesque
---genre crime, drama
---director feuillade ID = 20
---populate episode/series table
---what about countries
 
---put four more series in - Riget (The Kingdom), The Sopranos, 
 
 
 
@@ -1008,47 +992,10 @@ INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (50, 01);
 INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (51, 01);
 INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (52, 01);
 
-INSERT INTO tbl_series (id, title_en, title_alt, startyear, endyear, plot, episode_length, country, color, silent, rating_rt, rating_imdb) VALUES (02, 'The Kingdom', 'Riget', 1994, 1997, 'The show follows a number of characters, both staff and patients, as they encounter bizarre phenomena, both human and supernatural. The show is notable for its wry humor, its muted sepia colour scheme, and the appearance of a chorus of dishwashers with Down Syndrome who discuss in intimate detail the strange occurrences in the hospital.', 72, 59, 2, 2, 91, 8.5);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (11, 'The Severed Head', 01, 01);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (12, 'The Ring That Kills', 01, 02);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (13, 'The Red Codebook', 01, 03);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (14, 'The Spectre', 01, 04);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (15, 'Dead Mans Escape', 02, 05);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (16, 'Hypnotic Eyes', 02, 06);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (17, 'Satanas', 02, 07);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (18, 'The Thunder Master', 02, 08);
 
-INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 01); 
-INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 02);
-INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 03);
-INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 04);
-INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 05);
-INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 06);
-INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 07);
-INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 08);
+INSERT INTO tbl_review (id, user_creator, review_title, review_body, creation_date) VALUES (109, 000003 'The Original Series', 'Feuillade managed to create a cliffhanger in each episode and brought people flocking in. Imagine this series played out in an old cinema hall, the newness of the technology, a piano clinking behind in the background - the sighs of the audience. So old and yet, so new.', to_date('04/28/2013', 'MM/DD/YYYY'));
 
-INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 01);
-INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 02);
-INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 03);
-INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 04);
-INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 05);
-INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 06);
-INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 07);
-INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 08);
-INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 09);
-INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (01, 10);
-INSERT INTO tbl_seriesgenre (series_id, genre_id) VALUES (01, 9);
-INSERT INTO tbl_seriesgenre (series_id, genre_id) VALUES (01, 22);
-INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (20, 'Louis', '', 'Feuillade', to_date('02/19/1873', 'MM/DD/YYYY'), to_date('02/25/1925', 'MM/DD/YYYY'), 74);
-INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (50, 'Edouard', '', 'Mathe', to_date('01/07/1886', 'MM/DD/YYYY'), to_date('02/25/1934', 'MM/DD/YYYY'), 14);
-INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (51, 'Jeanne', 'Musidora', 'Roques', to_date('02/19/1889', 'MM/DD/YYYY'), to_date('02/11/1957', 'MM/DD/YYYY'), 74);
-INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (52, 'Marcel', '', 'Levesque', to_date('02/19/1877', 'MM/DD/YYYY'), to_date('02/25/1962', 'MM/DD/YYYY'), 74);
-INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (50, 01);
-INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (51, 01);
-INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (52, 01);
-
-
-	
+INSERT INTO tbl_seriesreview (series_id, review_id) VALUES (01, 109);	
 
 
 	
