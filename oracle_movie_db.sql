@@ -142,7 +142,6 @@ CREATE TABLE tbl_episode (
 	series_id NUMBER(10) NOT NULL,
 	season NUMBER(10) NOT NULL,
         episode_no NUMBER(10) NOT NULL,
-	director_id NUMBER(10) NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -254,10 +253,6 @@ ALTER TABLE tbl_actormovie
 ALTER TABLE tbl_actormovie
 	ADD FOREIGN KEY (movie_id) 
 	REFERENCES tbl_movie (id);
-
-ALTER TABLE tbl_episode
-	ADD FOREIGN KEY (director_id) 
-	REFERENCES tbl_director (id);
 
 ALTER TABLE tbl_episode
 	ADD FOREIGN KEY (series_id) 
@@ -952,16 +947,16 @@ INSERT INTO tbl_moviereview (movie_id, review_id) VALUES (9, 108);
 
 
 INSERT INTO tbl_series (id, title_en, title_alt, startyear, endyear, plot, episode_length, country, color, silent, rating_rt, rating_imdb) VALUES (01, 'The Vampires', 'Les Vampires', 1915, 1916, 'Les Vampires is a 1915-1916 silent crime serial film written and directed by Louis Feuillade. Set in Paris, it stars Edouard Mathe, Musidora and Marcel Levesque and follows a journalist and his friend who become involved in trying to uncover and stop a bizarre underground Apache gang.', 40, 74, 1, 1, 100, 7.1);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (01, 'The Severed Head', 01, 01, 20);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (02, 'The Ring That Kills', 01, 02, 20);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (03, 'The Red Codebook', 01, 03, 20);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (04, 'The Spectre', 01, 04, 20);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (05, 'Dead Mans Escape', 01, 05, 20);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (06, 'Hypnotic Eyes', 01, 06, 20);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (07, 'Satanas', 01, 07, 20);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (08, 'The Thunder Master', 01, 08, 20);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (09, 'The Poisoner', 01, 09, 20);
-INSERT INTO tbl_episode (id, episode_title, season, episode_no, director_id) VALUES (10, 'The Terrible Wedding', 01, 10, 20);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (01, 'The Severed Head', 01, 01);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (02, 'The Ring That Kills', 01, 02);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (03, 'The Red Codebook', 01, 03);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (04, 'The Spectre', 01, 04);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (05, 'Dead Mans Escape', 01, 05);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (06, 'Hypnotic Eyes', 01, 06);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (07, 'Satanas', 01, 07);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (08, 'The Thunder Master', 01, 08);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (09, 'The Poisoner', 01, 09);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (10, 'The Terrible Wedding', 01, 10);
 INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (20, 01); 
 INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (20, 02);
 INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (20, 03);
@@ -997,8 +992,146 @@ INSERT INTO tbl_review (id, user_creator, review_title, review_body, creation_da
 
 INSERT INTO tbl_seriesreview (series_id, review_id) VALUES (01, 109);	
 
+INSERT INTO tbl_series (id, title_en, title_alt, startyear, endyear, plot, episode_length, country, color, silent, rating_rt, rating_imdb) VALUES (02, 'The Kingdom', 'Riget', 1994, 1997, 'The series is set in the neurosurgical ward of Copenhagens Rigshospitalet, the city and countrys main hospital, nicknamed "Riget". "Riget" means "the realm" or "the kingdom" and leads one to think of "dodsriget", the realm of the dead.', 72, 59, 3, 3, 91, 8.4);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (11, 'The Unheavenly Host', 01, 01);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (12, 'Thy Kingdom Come', 01, 02);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (13, 'A Foreign Body', 01, 03);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (14, 'The Living Dead', 01, 04);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (15, 'Death On The Operation', 02, 01);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (16, 'Birds of Passage', 02, 02);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (17, 'Gargantua', 02, 03);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (18, 'Pandaemonium', 02, 04);
+ 
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 11); 
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 12);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 13);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 14);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 15);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 16);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 17);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (21, 18);
 
-	
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (02, 11);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (02, 12);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (02, 13);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (02, 14);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (02, 15);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (02, 16);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (02, 17);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (02, 18);
+
+INSERT INTO tbl_seriesgenre (series_id, genre_id) VALUES (02, 2);
+INSERT INTO tbl_seriesgenre (series_id, genre_id) VALUES (02, 22);
+INSERT INTO tbl_seriesgenre (series_id, genre_id) VALUES (02, 10);
+
+INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (21, 'Lars', '', 'von Trier', to_date('04/30/1956', 'MM/DD/YYYY'), '', 59);
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (53, 'Ernst-Hugo', 'Alfred', 'Jaregard', to_date('12/12/1928', 'MM/DD/YYYY'), to_date('09/06/1998', 'MM/DD/YYYY'), 208);
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (54, 'Kirsten', '', 'Rolffes', to_date('09/20/1928', 'MM/DD/YYYY'), to_date('04/10/2000', 'MM/DD/YYYY'), 59);
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (55, 'Holger', 'Juul', 'Hansen', to_date('08/14/1924', 'MM/DD/YYYY'), to_date('03/19/2013', 'MM/DD/YYYY'), 59);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (53, 02);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (54, 02);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (55, 02);
 
 
+INSERT INTO tbl_review (id, user_creator, review_title, review_body, creation_date) VALUES (110, 000005, 'By deliberately blurring the distinction between highbrow and trash movies, the director mocks his own inclinations toward a Wellesian grandiosity. The strategy allows him to flaunt a liberated cinematic imagination with nose-thumbing glee.', to_date('04/28/2013', 'MM/DD/YYYY'));
+
+INSERT INTO tbl_seriesreview (series_id, review_id) VALUES (02, 110);
+
+INSERT INTO tbl_series (id, title_en, title_alt, startyear, endyear, plot, episode_length, country, color, silent, rating_rt, rating_imdb) VALUES (03, 'The Sopranos', '', 1999, 2007, 'The series revolves around the New Jersey-based Italian-American mobster Tony Soprano (James Gandolfini) and the difficulties he faces as he tries to balance the conflicting requirements of his home life and the criminal organization he heads.', 50, 59, 3, 3, 100, 9.2);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (19, 'The Sopranos', 01, 01);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (20, '46 Long', 01, 02);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (21, 'Denial - Anger - Acceptance', 01, 03);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (22, 'Meadowlands', 01, 04);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (23, 'College', 01, 05);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (24, 'Pax Soprana', 01, 06);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (25, 'Down Neck', 01, 07);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (26, 'The Legend of Tennessee Moltisanti', 01, 08);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (27, 'Boca', 01, 09);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (28, 'A Hit Is a Hit', 01, 10);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (29, 'Nobody Knows Anything', 01, 11);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (30, 'Isabella', 01, 12); 
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (31, 'I Dream of Jeannie Cusamano', 01, 13);
+
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (22, 19); 
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (23, 20);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (24, 21);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (22, 22);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (23, 23);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (24, 24);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (22, 25);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (23, 26);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (24, 27);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (22, 28);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (23, 29);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (24, 30);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (22, 31);
+
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 19);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 20);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 21);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 22);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 23);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 24);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 25);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 26);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 27);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 28);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 29);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 30);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (03, 31);
+
+INSERT INTO tbl_seriesgenre (series_id, genre_id) VALUES (03, 9);
+INSERT INTO tbl_seriesgenre (series_id, genre_id) VALUES (03, 22);
+
+
+INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (22, 'David', '', 'Chase', to_date('08/22/1945', 'MM/DD/YYYY'), '', 227);
+INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (23, 'Daniel', '', 'Attias', to_date('12/04/1951', 'MM/DD/YYYY'), '', 227);
+INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (24, 'Nick', '', 'Gomez', to_date('04/13/1963', 'MM/DD/YYYY'), '', 227);
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (56, 'James', 'Joseph', 'Gandolfini', to_date('09/18/1961', 'MM/DD/YYYY'), '', 227);
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (57, 'Edith', '', 'Falco', to_date('07/05/1963', 'MM/DD/YYYY'), '', 227);
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (58, 'James', 'Michael', 'Imperioli', to_date('03/26/1966', 'MM/DD/YYYY'), '', 227);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (56, 03);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (57, 03);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (58, 03);
+
+
+INSERT INTO tbl_review (id, user_creator, review_title, review_body, creation_date) VALUES (111, 000002, 'There have been many classic works of entertainment from Star Wars to Christopher Nolans stunning The Dark Knight. Each one bends the viewers mind and breaks the viewers heart. However, no work of entertainment or fiction has ever done what The Sopranos has. The TV Show truly is art mimicking life, and it leaves the viewer stunned. Beyond the amazing acting, directing, and characters stands a story that is truly epic as it follows a mafioso trying to do good, but failing miserably. ', to_date('04/28/2013', 'MM/DD/YYYY'));
+
+INSERT INTO tbl_seriesreview (series_id, review_id) VALUES (03, 111);
+
+
+INSERT INTO tbl_series (id, title_en, title_alt, startyear, endyear, plot, episode_length, country, color, silent, rating_rt, rating_imdb) VALUES (04, 'Love/Hate', '', 2010, 2013, 'The show depicts fictional characters in Dublins criminal underworld, John Boy Power played by Aidan Gillen and Darren Treacy played by Robert Sheehan', 50, 104, 3, 3, 74, 7.7);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (32, 'Episode 1', 01, 01);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (33, 'Episode 2', 01, 02);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (34, 'Episode 3', 01, 03);
+INSERT INTO tbl_episode (id, episode_title, season, episode_no) VALUES (35, 'Episode 4', 01, 04);
+
+
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (25, 32); 
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (25, 33);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (25, 34);
+INSERT INTO tbl_directorepisode (director_id, episode_id) VALUES (25, 35);
+
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (04, 32);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (04, 33);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (04, 34);
+INSERT INTO TABLE tbl_episodeseries (series_id, episode_id) VALUES (04, 35);
+
+INSERT INTO tbl_seriesgenre (series_id, genre_id) VALUES (04, 9);
+INSERT INTO tbl_seriesgenre (series_id, genre_id) VALUES (04, 22);
+
+
+INSERT INTO tbl_director(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (25, 'Stuart', '', 'Carolan', to_date('08/22/1969', 'MM/DD/YYYY'), '', 104);
+
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (59, 'Aidan', '', 'Gillen', to_date('04/24/1968', 'MM/DD/YYYY'), '', 104);
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (60, 'Ruth', '', 'Negga', to_date('07/05/1982', 'MM/DD/YYYY'), '', 69);
+INSERT INTO tbl_actor(id, fname, mname, lname, dateofbirth, dateofdeath, birthcountry) VALUES (61, 'Jimmy', '', 'Smallhorne', to_date('03/26/1960', 'MM/DD/YYYY'), '', 227);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (59, 04);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (60, 04);
+INSERT INTO tbl_actorseries (actor_id, series_id) VALUES (61, 04);
+
+
+INSERT INTO tbl_review (id, user_creator, review_title, review_body, creation_date) VALUES (112, 000003, 'This has to be one of the best crime drama serious to come out of RTE in a long time, the acting is superb the drama is edge of the seat and story line never leaves the watcher in any confusion about what is going on its a bit like being part of the story you get so engrossed and the action never leaves you wanting, I would love to see a full length film from the writer Stuart Carolan and i will be looking out for any thing else he may have done.', to_date('04/28/2013', 'MM/DD/YYYY'));
+
+INSERT INTO tbl_seriesreview (series_id, review_id) VALUES (04, 112);
 
