@@ -1,6 +1,8 @@
 ﻿/*TO DO
-Start creating queries - see spec
--fully checked - insert three more series - brief and you're ready to make queries
+DDL Complete
+- Check For Errors
+- Start Queries
+- Start Write-up
 */
 
 CREATE TABLE tbl_user (
